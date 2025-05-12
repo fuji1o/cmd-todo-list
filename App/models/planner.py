@@ -18,7 +18,7 @@ class Planner:
         """
         self.tasks: dict[int, Task] = {}
     
-    def add_task(self, task) -> None:
+    def add_task(self, task: Task) -> None:
         """
         Добавление задачи в планировщик.
 
@@ -45,8 +45,6 @@ class Planner:
         """
         if id is None:
             raise InvalidTaskIdException("ID задачи не указан")
-        if not isinstance(id, int):
-            raise InvalidTaskIdException("ID должен быть целым числом")
         if id in self.tasks:
             self.tasks[id].is_done = True
         else:
@@ -66,8 +64,6 @@ class Planner:
         """ 
         if id is None:
             raise InvalidTaskIdException("ID задачи не указан")
-        if not isinstance(id, int):
-            raise InvalidTaskIdException("ID должен быть целым числом")
         if not new_text:
             raise EmptyTextException("Текст задачи не может быть пустым")
         if id in self.tasks:
@@ -83,7 +79,7 @@ class Planner:
         """
         return list(self.tasks.values())
     
-    def delete_task(self, id) -> None:
+    def delete_task(self, id:int) -> None:
         """
         Удаление задачи из планировщика по ID.
 
