@@ -3,5 +3,4 @@ from sqlalchemy.orm import declarative_base, sessionmaker
 
 DATABASE_URL = "sqlite:///cmd_todo_list.db"
 engine = create_engine(DATABASE_URL, echo=False)
-Session = sessionmaker(bind=engine)
 Base = declarative_base()
