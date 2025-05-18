@@ -16,7 +16,6 @@ class DbPlanner(IPlanner):
         if not task.text:
             raise EmptyTextException("Текст задачи не должен быть пустым")
         self.session.add(task)
-        self.session.commit()
 
     def mark_done(self, id: Optional[int]) -> None:
         if id is None:
@@ -25,7 +24,6 @@ class DbPlanner(IPlanner):
         if task is None:
             raise TaskNotFoundException("Задача не найдена")
         task.is_done = True
-        self.session.commit()
 
     def edit_task(self, id, new_text):
         if id is None:
@@ -37,7 +35,6 @@ class DbPlanner(IPlanner):
         if task is None:
             raise TaskNotFoundException("Задача не найдена")
         task.text = new_text
-        self.session.commit()
 
     def get_tasks(self):
         return self.session.query(TaskModel).all()
@@ -49,7 +46,6 @@ class DbPlanner(IPlanner):
         if task is None:
             raise TaskNotFoundException("Задача не найдена")
         self.session.delete(task)
-        self.session.commit()
 
     def create_task(self, text: str) -> TaskModel:
         return TaskModel(text=text)
